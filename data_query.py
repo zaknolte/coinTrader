@@ -26,6 +26,7 @@ def get_candles_data(product: str, granularity: int, start: datetime.datetime, e
 
     for i in range(total_steps):
         step_end = new_start + datetime.timedelta(minutes=300 * granularity / 60)
+        print(f"Collecting {product} data from {new_start} through {step_end} at granularity {granularity}...")
         query = f"granularity={granularity}&start={new_start}&end={step_end}"
         r = requests.get(f"https://api.exchange.coinbase.com/products/eth-usd/candles?{query}")
         d = r.json()
